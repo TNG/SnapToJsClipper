@@ -13,6 +13,13 @@ compatible with version `6.0.x.y` yet!
 Note that `Javascript clipper` uses `Snap.svg`'s predecessor `Raphael` internally; in order to increase performance and
 to reduce reduncancy, one could think of re-writing `Javascript clipper` using `Snap.svg` only.
 
+## Motivation
+Clipping the visible part of a given SVG file is easy when it comes to rendering for viewing purpose by just adding a partially transparent layer over it.
+When it comes to laser cutting or CNC milling, this becomes non trivial, since both techniques do not only need information about the visible/hidden parts of a `path`, but a continuous representation of the clipped `path` as a guidance for their cutting tools.
+
+This repository provides a [Snap](snapsvg.io) plugin that allows for the usage of the established `Javascript clipper` library to execute boolean operations on two overlaying polygons.
+Note that any SVG path commands different from `m/M`, `l/L` and `Z` will be ignored, so a simplification to polygon lines must be performed on each `path` before processed by `Javascript clipper`.
+
 ## Usage
 
 This plugin extends the API of each `Snap.Element` with the functions `unionClip()`, `intersectClip()`
@@ -98,3 +105,31 @@ Snap.path(subj.xorClip(clip));
 ```
 
 ![](img/xor.svg)
+
+## License
+
+This project is licensed under Apache-2.0 license.
+
+## Contributing
+Contributions are welcome.
+The following section provides some helpful guidelines.
+
+### How to contribute
+Please provide your contribution following this workflow:
+- fork the project
+- create a feature branch
+- add your contribution
+- create a pull request
+
+#### Commits
+Any commit message should be clear and fully elaborate the context and the motivation for a change.
+If there is an issue number available, please provide it in the number in the commit message.
+
+Furthermore, any commit should be signed off according to the [DCO](https://github.com/TNG/SnapToJsClipper/blob/main/DCO).
+
+#### Pull Requests
+If your pull request resolves an issue, please add a respecitve statement in the pull request's comment.
+
+#### Formatting
+Please adjust your code formatter to the general style of the project.
+
